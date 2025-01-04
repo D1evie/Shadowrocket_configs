@@ -1,2 +1,2 @@
-DOMAIN-SUFFIX,rtc.org,REJECT
-DOMAIN-SUFFIX,webrtc.org,REJECT
+DOMAIN-SUFFIX,rtc.org
+DOMAIN-SUFFIX,webrtc.org
