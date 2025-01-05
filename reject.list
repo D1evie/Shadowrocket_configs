@@ -1,7 +1,7 @@
-DOMAIN-SUFFIX,rtc.org,REJECT
-DOMAIN-SUFFIX,stunprotocol.org,REJECT
-DOMAIN-SUFFIX,stun.l.google.com,REJECT
-DOMAIN-SUFFIX,turn.l.google.com,REJECT
-DOMAIN-SUFFIX,googlewebrtc.com,REJECT
-DOMAIN-SUFFIX,webrtc2.de,REJECT
-DOMAIN-SUFFIX,webrtc.org,REJECT
+DOMAIN-SUFFIX,rtc.org
+DOMAIN-SUFFIX,stunprotocol.org
+DOMAIN-SUFFIX,stun.l.google.com
+DOMAIN-SUFFIX,turn.l.google.com
+DOMAIN-SUFFIX,googlewebrtc.com
+DOMAIN-SUFFIX,webrtc2.de
+DOMAIN-SUFFIX,webrtc.org
