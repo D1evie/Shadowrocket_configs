@@ -1,3 +1,6 @@
 DOMAIN-SUFFIX,rtc.org
-DOMAIN-SUFFIX,webrtc.org
-DOMAIN-SUFFIX,google.com
+DOMAIN-SUFFIX,stunprotocol.org
+DOMAIN-SUFFIX,stun.l.google.com
+DOMAIN-SUFFIX,turn.l.google.com
+DOMAIN-SUFFIX,googlewebrtc.com
+DOMAIN-SUFFIX,webrtc2.de
