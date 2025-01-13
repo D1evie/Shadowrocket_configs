@@ -91,147 +91,147 @@ rule-providers:
   domain_main:
     type: http
     behavior: classical
-    path: ./rule-providers/domain.list
+    path: ./rule-providers/domain.yaml
     url: "https://raw.githubusercontent.com/D1evie/Shadowrocket_configs/refs/heads/main/domain.list"
     interval: 86400
 
   spotify:
     type: http
     behavior: classical
-    path: ./rule-providers/Spotify.list
+    path: ./rule-providers/Spotify.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
     interval: 86400
 
   linkedin:
     type: http
     behavior: classical
-    path: ./rule-providers/LinkedIn.list
+    path: ./rule-providers/LinkedIn.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LinkedIn/LinkedIn.yaml"
     interval: 86400
 
   facebook:
     type: http
     behavior: classical
-    path: ./rule-providers/Facebook.list
+    path: ./rule-providers/Facebook.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml"
     interval: 86400
 
   twitter:
     type: http
     behavior: classical
-    path: ./rule-providers/Twitter.list
+    path: ./rule-providers/Twitter.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
     interval: 86400
 
   discord:
     type: http
     behavior: classical
-    path: ./rule-providers/Discord.list
+    path: ./rule-providers/Discord.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml"
     interval: 86400
 
   tidal:
     type: http
     behavior: classical
-    path: ./rule-providers/TIDAL.list
+    path: ./rule-providers/TIDAL.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TIDAL/TIDAL.yaml"
     interval: 86400
 
   openai:
     type: http
     behavior: classical
-    path: ./rule-providers/OpenAI.list
+    path: ./rule-providers/OpenAI.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
     interval: 86400
 
   instagram:
     type: http
     behavior: classical
-    path: ./rule-providers/Instagram.list
+    path: ./rule-providers/Instagram.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.yaml"
     interval: 86400
 
   youtubemusic:
     type: http
     behavior: classical
-    path: ./rule-providers/YouTubeMusic.list
+    path: ./rule-providers/YouTubeMusic.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
     interval: 86400
 
   youtube:
     type: http
     behavior: classical
-    path: ./rule-providers/YouTube.list
+    path: ./rule-providers/YouTube.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
     interval: 86400
 
   protonmail:
     type: http
     behavior: classical
-    path: ./rule-providers/Protonmail.list
+    path: ./rule-providers/Protonmail.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Protonmail/Protonmail.yaml"
     interval: 86400
 
   jetbrains:
     type: http
     behavior: classical
-    path: ./rule-providers/Jetbrains.list
+    path: ./rule-providers/Jetbrains.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Jetbrains/Jetbrains.yaml"
     interval: 86400
 
   dell:
     type: http
     behavior: classical
-    path: ./rule-providers/Dell.list
+    path: ./rule-providers/Dell.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Dell/Dell.yaml"
     interval: 86400
 
   intel:
     type: http
     behavior: classical
-    path: ./rule-providers/Intel.list
+    path: ./rule-providers/Intel.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Intel/Intel.yaml"
     interval: 86400
 
   bbc:
     type: http
     behavior: classical
-    path: ./rule-providers/BBC.list
+    path: ./rule-providers/BBC.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BBC/BBC.yaml"
     interval: 86400
 
   github:
     type: http
     behavior: classical
-    path: ./rule-providers/GitHub.list
+    path: ./rule-providers/GitHub.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
     interval: 86400
 
   telegram:
     type: http
     behavior: classical
-    path: ./rule-providers/Telegram.list
+    path: ./rule-providers/Telegram.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
     interval: 86400
 
   telegramnl:
     type: http
     behavior: classical
-    path: ./rule-providers/TelegramNL.list
+    path: ./rule-providers/TelegramNL.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramNL/TelegramNL.yaml"
     interval: 86400
 
   telegramsg:
     type: http
     behavior: classical
-    path: ./rule-providers/TelegramSG.list
+    path: ./rule-providers/TelegramSG.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramSG/TelegramSG.yaml"
     interval: 86400
 
   telegramus:
     type: http
     behavior: classical
-    path: ./rule-providers/TelegramUS.list
+    path: ./rule-providers/TelegramUS.yaml
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramUS/TelegramUS.yaml"
     interval: 86400
 
