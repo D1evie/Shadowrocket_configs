@@ -1,0 +1,284 @@
+# =========================
+#   Clash Config Example
+# =========================
+
+# =============
+# 0) GENERAL
+# =============
+port: 7890            # HTTP/HTTPS 代理端口
+socks-port: 7891      # SOCKS 代理端口
+redir-port: 7892      # 需ROOT权限，如不需要可删除
+allow-lan: false
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+secret: ""
+
+# =============
+# 1) DNS
+# =============
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  # Clash рекомендует режим fake-ip или redir-host
+  # Здесь укажем fake-ip, как наиболее универсальный
+  enhanced-mode: fake-ip
+  nameserver:
+    - https://dns.adguard-dns.com/dns-query
+    - tls://dns.adguard-dns.com
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+  fallback: []
+  fallback-filter:
+    geoip: true
+    ipcidr: 
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+  
+# =============
+# 2) PROXIES
+#    Сюда добавьте свои реальные серверы: VMess / Shadowsocks / Trojan / SSR и т.д.
+#    Ниже — лишь пример "Shadowsocks" и "VMess" (заглушки).
+# =============
+proxies:
+  - name: "My-SS-Server"
+    type: ss
+    server: example.com
+    port: 8388
+    cipher: aes-128-gcm
+    password: "mypass"
+    udp: true
+
+  - name: "My-VMess-Server"
+    type: vmess
+    server: example.org
+    port: 443
+    uuid: "YOUR-UUID-HERE"
+    alterId: 0
+    cipher: auto
+    tls: true
+
+# =============
+# 3) PROXY GROUPS
+#    Shadowrocket "[Proxy Group] AUTO" = url-test
+#    Добавляем группу "AUTO" с тестом доступности
+# =============
+proxy-groups:
+  # AUTO = url-test
+  - name: "AUTO"
+    type: url-test
+    proxies:
+      - "My-SS-Server"
+      - "My-VMess-Server"
+    url: "https://cp.cloudflare.com/generate_204"
+    interval: 600
+
+  # Можно добавить еще одну группу для DIRECT, если хотите в будущем
+  # переключаться внутри Clash UI.
+  - name: "DIRECT-GROUP"
+    type: select
+    proxies:
+      - DIRECT
+
+# =============
+# 4) RULE PROVIDERS
+#    RULE-SET ... из Shadowrocket -> правило Clash
+#    Для каждого URL создаём rule-provider (type: http, behavior: classical)
+# =============
+rule-providers:
+  domain_main:
+    type: http
+    behavior: classical
+    path: ./rule-providers/domain.list
+    url: "https://raw.githubusercontent.com/D1evie/Shadowrocket_configs/refs/heads/main/domain.list"
+    interval: 86400
+
+  spotify:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Spotify.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
+    interval: 86400
+
+  linkedin:
+    type: http
+    behavior: classical
+    path: ./rule-providers/LinkedIn.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LinkedIn/LinkedIn.yaml"
+    interval: 86400
+
+  facebook:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Facebook.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml"
+    interval: 86400
+
+  twitter:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Twitter.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
+    interval: 86400
+
+  discord:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Discord.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml"
+    interval: 86400
+
+  tidal:
+    type: http
+    behavior: classical
+    path: ./rule-providers/TIDAL.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TIDAL/TIDAL.yaml"
+    interval: 86400
+
+  openai:
+    type: http
+    behavior: classical
+    path: ./rule-providers/OpenAI.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
+    interval: 86400
+
+  instagram:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Instagram.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.yaml"
+    interval: 86400
+
+  youtubemusic:
+    type: http
+    behavior: classical
+    path: ./rule-providers/YouTubeMusic.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
+    interval: 86400
+
+  youtube:
+    type: http
+    behavior: classical
+    path: ./rule-providers/YouTube.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
+    interval: 86400
+
+  protonmail:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Protonmail.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Protonmail/Protonmail.yaml"
+    interval: 86400
+
+  jetbrains:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Jetbrains.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Jetbrains/Jetbrains.yaml"
+    interval: 86400
+
+  dell:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Dell.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Dell/Dell.yaml"
+    interval: 86400
+
+  intel:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Intel.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Intel/Intel.yaml"
+    interval: 86400
+
+  bbc:
+    type: http
+    behavior: classical
+    path: ./rule-providers/BBC.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BBC/BBC.yaml"
+    interval: 86400
+
+  github:
+    type: http
+    behavior: classical
+    path: ./rule-providers/GitHub.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
+    interval: 86400
+
+  telegram:
+    type: http
+    behavior: classical
+    path: ./rule-providers/Telegram.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
+    interval: 86400
+
+  telegramnl:
+    type: http
+    behavior: classical
+    path: ./rule-providers/TelegramNL.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramNL/TelegramNL.yaml"
+    interval: 86400
+
+  telegramsg:
+    type: http
+    behavior: classical
+    path: ./rule-providers/TelegramSG.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramSG/TelegramSG.yaml"
+    interval: 86400
+
+  telegramus:
+    type: http
+    behavior: classical
+    path: ./rule-providers/TelegramUS.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TelegramUS/TelegramUS.yaml"
+    interval: 86400
+
+
+# =============
+# 5) RULES
+#    Порядок важен: Clash идёт сверху вниз, пока не найдёт совпадение
+# =============
+rules:
+  # --- Skip Proxy для локальных IP ---
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+
+  # --- Skip Proxy для локальных доменов ---
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  - DOMAIN-KEYWORD,localhost,DIRECT
+
+  # --- Портовые правила (Clash Premium/Meta поддерживает DST-PORT или PORT) ---
+  #   Если у вас обычный Clash без патча, эти строки могут не сработать.
+  - DST-PORT,3478,AUTO
+  - DST-PORT,5349,AUTO
+  - DST-PORT,49152-65535,AUTO
+
+  # --- Подключаем списки из rule-providers -> AUTO ---
+  - RULE-SET,domain_main,AUTO
+  - RULE-SET,spotify,AUTO
+  - RULE-SET,linkedin,AUTO
+  - RULE-SET,facebook,AUTO
+  - RULE-SET,twitter,AUTO
+  - RULE-SET,discord,AUTO
+  - RULE-SET,tidal,AUTO
+  - RULE-SET,openai,AUTO
+  - RULE-SET,instagram,AUTO
+  - RULE-SET,youtubemusic,AUTO
+  - RULE-SET,youtube,AUTO
+  - RULE-SET,protonmail,AUTO
+  - RULE-SET,jetbrains,AUTO
+  - RULE-SET,dell,AUTO
+  - RULE-SET,intel,AUTO
+  - RULE-SET,bbc,AUTO
+  - RULE-SET,github,AUTO
+  - RULE-SET,telegram,AUTO
+  - RULE-SET,telegramnl,AUTO
+  - RULE-SET,telegramsg,AUTO
+  - RULE-SET,telegramus,AUTO
+
+  # --- Финальное правило (аналог FINAL,DIRECT) ---
+  - MATCH,DIRECT
