@@ -1,0 +1,198 @@
+{
+  // -----------------------------------------------------------
+  // 1) Логи (по желанию)
+  // -----------------------------------------------------------
+  "log": {
+    "loglevel": "warning"
+  },
+
+  // -----------------------------------------------------------
+  // 2) Настройки DNS
+  // -----------------------------------------------------------
+  "dns": {
+    "servers": [
+      // DoH AdGuard
+      {
+        "address": "https://dns.adguard-dns.com/dns-query",
+        "domains": ["geosite:geolocation-!ru"]
+      },
+      // DoT AdGuard
+      {
+        "address": "tls://dns.adguard-dns.com",
+        "domains": ["geosite:geolocation-!ru"]
+      },
+      // При необходимости QUIC (не всегда поддерживается) 
+      // {
+      //   "address": "quic://dns.adguard-dns.com"
+      // },
+      // Fallback DNS:
+      {
+        "address": "https://8.8.8.8/dns-query"
+      },
+      {
+        "address": "https://1.1.1.1/dns-query"
+      }
+    ]
+  },
+
+  // -----------------------------------------------------------
+  // 3) Inbounds (локальные порты, по вкусу)
+  // -----------------------------------------------------------
+  "inbounds": [
+    {
+      "port": 10808,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "tag": "socks-inbound",
+      "settings": {
+        "udp": true
+      }
+    },
+    {
+      "port": 10809,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "tag": "http-inbound"
+    }
+  ],
+
+  // -----------------------------------------------------------
+  // 4) Outbounds:
+  //    - "direct": соединение напрямую
+  //    - "PROXY": ваш реальный сервер (VMess/VLESS/Trojan и т. д.)
+  // -----------------------------------------------------------
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "PROXY",
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "example.com",
+            "port": 443,
+            "users": [
+              {
+                "id": "YOUR_UUID_HERE",
+                "alterId": 0,
+                "security": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false
+        }
+      }
+    }
+  ],
+
+  // -----------------------------------------------------------
+  // 5) Маршрутизация (routing)
+  // -----------------------------------------------------------
+  "routing": {
+    // "AsIs" — берёт домены как есть, не пытаясь дополнительно резолвить по IP
+    // При желании можно сменить на "IPIfNonMatch" или "IPOnDemand"
+    "domainStrategy": "AsIs",
+    "rules": [
+      // --- skip-proxy (локальные IP, localhost) ---
+      {
+        "type": "field",
+        "ip": [
+          "192.168.0.0/16",
+          "10.0.0.0/8",
+          "172.16.0.0/12"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "localhost",
+          "local",
+          "captive.apple.com"
+        ],
+        "outboundTag": "direct"
+      },
+
+      // --- DST-PORT -> PROXY (из старой конфигурации Shadowrocket) ---
+      {
+        "type": "field",
+        "port": "3478",
+        "outboundTag": "PROXY"
+      },
+      {
+        "type": "field",
+        "port": "5349",
+        "outboundTag": "PROXY"
+      },
+      {
+        "type": "field",
+        "port": "49152-65535",
+        "outboundTag": "PROXY"
+      },
+
+      // --- Правила на основе DOMAIN-SUFFIX и DOMAIN-KEYWORD ---
+      {
+        "type": "field",
+        "domain": [
+          // DOMAIN-SUFFIX
+          "domain:whoer.net",
+          "domain:innovcard.com",
+          "domain:privnote.com",
+          "domain:adguard.com",
+          "domain:cloudzy.com",
+          "domain:codeweavers.com",
+          "domain:amnezia.org",
+          "domain:ntc.party",
+          "domain:4pda.ru",
+          "domain:rutracker.org",
+          "domain:rutor.org",
+          "domain:zerolab.net",
+          "domain:amnezia.org",        // повтор
+          "domain:4pda.to",
+          "domain:yourliverules.com",
+          "domain:habr.com",
+          "domain:ishosting.com",
+          "domain:ntc.party",         // повтор
+          "domain:dyson.com",
+          "domain:tidal.com",
+          "domain:browserleaks.com",
+          "domain:sora.com",
+          "domain:googleusercontent.com",
+          "domain:ggpht.com",
+          "domain:googleapis.com",
+          "domain:gstatic.com",
+          "domain:ipleak.net",
+          "domain:whatleaks.site",
+          "domain:hetzner.com",
+          "domain:digitalocean.com",
+          "domain:linode.com",
+          "domain:vultr.com",
+
+          // DOMAIN-KEYWORD
+          "keyword:adguard",
+          "keyword:cloudzy",
+          "keyword:tidal",
+          "keyword:stun",
+          "keyword:tun"
+        ],
+        "outboundTag": "PROXY"
+      },
+
+      // --- Аналог "FINAL,DIRECT" ---
+      {
+        "type": "field",
+        "outboundTag": "direct"
+      }
+    ]
+  }
+}
