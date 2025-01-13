@@ -92,7 +92,7 @@ rule-providers:
     type: http
     behavior: classical
     path: ./rule-providers/domain.yaml
-    url: "https://raw.githubusercontent.com/D1evie/Shadowrocket_configs/refs/heads/main/domain.list"
+    url: "https://raw.githubusercontent.com/D1evie/Shadowrocket_configs/refs/heads/main/domain.yaml"
     interval: 86400
 
   spotify:
