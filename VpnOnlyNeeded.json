@@ -21,7 +21,7 @@
         "address": "tls://dns.adguard-dns.com",
         "domains": ["geosite:geolocation-!ru"]
       },
-      // При необходимости QUIC (не всегда поддерживается) 
+      // При необходимости (не всегда поддерживается) 
       // {
       //   "address": "quic://dns.adguard-dns.com"
       // },
@@ -99,7 +99,7 @@
   // 5) Маршрутизация (routing)
   // -----------------------------------------------------------
   "routing": {
-    // "AsIs" — берёт домены как есть, не пытаясь дополнительно резолвить по IP
+    // "AsIs" — берёт домены как есть
     // При желании можно сменить на "IPIfNonMatch" или "IPOnDemand"
     "domainStrategy": "AsIs",
     "rules": [
@@ -140,44 +140,42 @@
         "outboundTag": "PROXY"
       },
 
-      // --- Правила на основе DOMAIN-SUFFIX и DOMAIN-KEYWORD ---
+      // --- Доменные правила (DOMAIN-SUFFIX -> suffix:, DOMAIN-KEYWORD -> keyword:) ---
       {
         "type": "field",
         "domain": [
           // DOMAIN-SUFFIX
-          "domain:whoer.net",
-          "domain:innovcard.com",
-          "domain:privnote.com",
-          "domain:adguard.com",
-          "domain:cloudzy.com",
-          "domain:codeweavers.com",
-          "domain:amnezia.org",
-          "domain:ntc.party",
-          "domain:4pda.ru",
-          "domain:rutracker.org",
-          "domain:rutor.org",
-          "domain:zerolab.net",
-          "domain:amnezia.org",        // повтор
-          "domain:4pda.to",
-          "domain:yourliverules.com",
-          "domain:habr.com",
-          "domain:ishosting.com",
-          "domain:ntc.party",         // повтор
-          "domain:dyson.com",
-          "domain:tidal.com",
-          "domain:browserleaks.com",
-          "domain:sora.com",
-          "domain:googleusercontent.com",
-          "domain:ggpht.com",
-          "domain:googleapis.com",
-          "domain:gstatic.com",
-          "domain:ipleak.net",
-          "domain:whatleaks.site",
-          "domain:hetzner.com",
-          "domain:digitalocean.com",
-          "domain:linode.com",
-          "domain:vultr.com",
-
+          "suffix:whoer.net",
+          "suffix:innovcard.com",
+          "suffix:privnote.com",
+          "suffix:adguard.com",
+          "suffix:cloudzy.com",
+          "suffix:codeweavers.com",
+          "suffix:amnezia.org",
+          "suffix:ntc.party",
+          "suffix:4pda.ru",
+          "suffix:rutracker.org",
+          "suffix:rutor.org",
+          "suffix:zerolab.net",
+          "suffix:4pda.to",
+          "suffix:yourliverules.com",
+          "suffix:habr.com",
+          "suffix:ishosting.com",
+          "suffix:dyson.com",
+          "suffix:tidal.com",
+          "suffix:browserleaks.com",
+          "suffix:sora.com",
+          "suffix:googleusercontent.com",
+          "suffix:ggpht.com",
+          "suffix:googleapis.com",
+          "suffix:gstatic.com",
+          "suffix:ipleak.net",
+          "suffix:whatleaks.site",
+          "suffix:hetzner.com",
+          "suffix:digitalocean.com",
+          "suffix:linode.com",
+          "suffix:vultr.com",
+          
           // DOMAIN-KEYWORD
           "keyword:adguard",
           "keyword:cloudzy",
