@@ -9,6 +9,7 @@ DOMAIN-SUFFIX,codeweavers.com
 DOMAIN-SUFFIX,amnezia.org
 DOMAIN-SUFFIX,ntc.party
 DOMAIN-SUFFIX,4pda.ru
+DOMAIN-SUFFIX,4pda.to
 DOMAIN-SUFFIX,rutracker.org
 DOMAIN-KEYWORD,rutracker
 DOMAIN-SUFFIX,rutor.org
@@ -16,7 +17,6 @@ DOMAIN-KEYWORD,rutor
 DOMAIN-SUFFIX,kinozal.tv
 DOMAIN-KEYWORD,kinozal
 DOMAIN-SUFFIX,zerolab.net
-DOMAIN-SUFFIX,4pda.to
 DOMAIN-SUFFIX,yourliverules.com
 DOMAIN-SUFFIX,habr.com
 DOMAIN-SUFFIX,ishosting.com
@@ -53,3 +53,4 @@ DOMAIN-SUFFIX,getsession.org
 DOMAIN-SUFFIX,bithost.io
 DOMAIN-SUFFIX,time4vps.com
 DOMAIN-SUFFIX,greencloudvps.com
+DOMAIN-SUFFIX,speedtest.net
