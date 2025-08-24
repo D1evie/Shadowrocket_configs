@@ -3,6 +3,11 @@
 # DOMAIN-KEYWORD,google.
 # DOMAIN-SUFFIX,googleusercontent.com
 # DOMAIN-SUFFIX,googleapis.com
+# Session
+DOMAIN-SUFFIX,getsession.org
+DOMAIN-SUFFIX,session.foundation
+DOMAIN-SUFFIX,oxen.io
+DOMAIN-SUFFIX,lokinet.org
 DOMAIN-SUFFIX,whoer.net
 DOMAIN-SUFFIX,innovcard.com
 DOMAIN-SUFFIX,privnote.com
@@ -51,9 +56,6 @@ DOMAIN-SUFFIX,censorship.no
 DOMAIN-SUFFIX,simplex.chat
 DOMAIN-SUFFIX,simplex.im
 DOMAIN-SUFFIX,runonflux.io
-DOMAIN-SUFFIX,getsession.org
-DOMAIN-SUFFIX,session.foundation
-DOMAIN-SUFFIX,oxen.io
 DOMAIN-SUFFIX,bithost.io
 DOMAIN-SUFFIX,time4vps.com
 DOMAIN-SUFFIX,greencloudvps.com
