@@ -12,6 +12,41 @@ DOMAIN-SUFFIX,lokinet.org
 DOMAIN-SUFFIX,acloset.app
 DOMAIN-KEYWORD,acloset
 DOMAIN,acloset.page.link
+# Vogue
+DOMAIN-SUFFIX,vogue.com
+DOMAIN-SUFFIX,archive.vogue.com
+DOMAIN-SUFFIX,vogueforcesoffashion.com
+DOMAIN-SUFFIX,voguecollege.com
+DOMAIN-SUFFIX,vogueadria.com
+DOMAIN-SUFFIX,vogue.me
+DOMAIN-SUFFIX,vogue.com.au
+DOMAIN-SUFFIX,vogue.co.uk
+DOMAIN-SUFFIX,vogue.com.cn
+DOMAIN-SUFFIX,vogue.cz
+DOMAIN-SUFFIX,vogue.es
+DOMAIN-SUFFIX,vogue.fr
+DOMAIN-SUFFIX,vogue.de
+DOMAIN-SUFFIX,vogue.gr
+DOMAIN-SUFFIX,voguehk.com
+DOMAIN-SUFFIX,vogue.in
+DOMAIN-SUFFIX,vogue.it
+DOMAIN-SUFFIX,vogue.co.jp
+DOMAIN-SUFFIX,vogue.co.kr
+DOMAIN-SUFFIX,vogue.mx
+DOMAIN-SUFFIX,vogue.nl
+DOMAIN-SUFFIX,vogue.ph
+DOMAIN-SUFFIX,vogue.pl
+DOMAIN-SUFFIX,vogue.pt
+DOMAIN-SUFFIX,voguescandinavia.com
+DOMAIN-SUFFIX,vogue.sg
+DOMAIN-SUFFIX,vogue.com.tw
+DOMAIN-SUFFIX,vogue.co.th
+DOMAIN-SUFFIX,vogue.com.tr
+DOMAIN-SUFFIX,vogue.ua
+DOMAIN-SUFFIX,vogue.ru
+DOMAIN-SUFFIX,conde.io
+DOMAIN-SUFFIX,condenast.com
+DOMAIN-SUFFIX,condenastdigital.com
 # Other
 DOMAIN-SUFFIX,whoer.net
 DOMAIN-SUFFIX,innovcard.com
@@ -74,4 +109,3 @@ DOMAIN-SUFFIX,bananarollstudio.com
 DOMAIN-SUFFIX,greenpeaceinc.com
 DOMAIN-SUFFIX,realmoonlightinc.com
 DOMAIN-SUFFIX,hiddify.com
-DOMAIN-SUFFIX,vogue.com
