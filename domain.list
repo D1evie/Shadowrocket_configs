@@ -8,6 +8,11 @@ DOMAIN-SUFFIX,getsession.org
 DOMAIN-SUFFIX,session.foundation
 DOMAIN-SUFFIX,oxen.io
 DOMAIN-SUFFIX,lokinet.org
+# Acloset
+DOMAIN-SUFFIX,acloset.app
+DOMAIN-KEYWORD,acloset
+DOMAIN,acloset.page.link
+# Other
 DOMAIN-SUFFIX,whoer.net
 DOMAIN-SUFFIX,innovcard.com
 DOMAIN-SUFFIX,privnote.com
