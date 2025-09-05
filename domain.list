@@ -49,6 +49,11 @@ DOMAIN-SUFFIX,condenast.com
 DOMAIN-SUFFIX,condenastdigital.com
 DOMAIN-SUFFIX,condenast.io
 DOMAIN-SUFFIX,conde.digital
+#Threema
+DOMAIN-SUFFIX,threema.ch
+DOMAIN,stun.threema.ch
+DOMAIN,turn.threema.ch
+DOMAIN,ds-turn.threema.ch
 # Other
 DOMAIN-SUFFIX,appstorrent.ru
 DOMAIN-SUFFIX,whoer.net
