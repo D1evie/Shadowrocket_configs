@@ -1,13 +1,16 @@
-# Google
-# DOMAIN-KEYWORD,www.google.
-# DOMAIN-KEYWORD,google.
-# DOMAIN-SUFFIX,googleusercontent.com
-# DOMAIN-SUFFIX,googleapis.com
 # Session
 DOMAIN-SUFFIX,getsession.org
 DOMAIN-SUFFIX,session.foundation
 DOMAIN-SUFFIX,oxen.io
 DOMAIN-SUFFIX,lokinet.org
+# Threema
+DOMAIN-SUFFIX,threema.ch
+DOMAIN,stun.threema.ch
+DOMAIN,turn.threema.ch
+DOMAIN,ds-turn.threema.ch
+# Simplex
+DOMAIN-SUFFIX,simplex.chat
+DOMAIN-SUFFIX,simplex.im
 # Acloset
 DOMAIN-SUFFIX,acloset.app
 DOMAIN-KEYWORD,acloset
@@ -49,11 +52,6 @@ DOMAIN-SUFFIX,condenast.com
 DOMAIN-SUFFIX,condenastdigital.com
 DOMAIN-SUFFIX,condenast.io
 DOMAIN-SUFFIX,conde.digital
-#Threema
-DOMAIN-SUFFIX,threema.ch
-DOMAIN,stun.threema.ch
-DOMAIN,turn.threema.ch
-DOMAIN,ds-turn.threema.ch
 # Other
 DOMAIN-SUFFIX,appstorrent.ru
 DOMAIN-SUFFIX,whoer.net
@@ -83,7 +81,6 @@ DOMAIN-KEYWORD,tidal
 DOMAIN-SUFFIX,browserleaks.com
 DOMAIN-SUFFIX,sora.com
 DOMAIN-SUFFIX,ggpht.com
-DOMAIN-SUFFIX,gstatic.com
 DOMAIN-SUFFIX,ipleak.net
 DOMAIN-SUFFIX,whatleaks.site
 DOMAIN-SUFFIX,hetzner.com
@@ -101,13 +98,10 @@ DOMAIN-SUFFIX,dept.one
 DOMAIN-SUFFIX,ceno.app
 DOMAIN-SUFFIX,deepl.com
 DOMAIN-SUFFIX,censorship.no
-DOMAIN-SUFFIX,simplex.chat
-DOMAIN-SUFFIX,simplex.im
 DOMAIN-SUFFIX,runonflux.io
 DOMAIN-SUFFIX,bithost.io
 DOMAIN-SUFFIX,time4vps.com
 DOMAIN-SUFFIX,greencloudvps.com
-DOMAIN-SUFFIX,speedtest.net
 DOMAIN-SUFFIX,namecheap.com
 DOMAIN-SUFFIX,broadcom.com
 DOMAIN-SUFFIX,clamav.net
