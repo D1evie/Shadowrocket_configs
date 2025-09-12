@@ -26,8 +26,8 @@ const reNL = /(?:🇳🇱|netherlands|amsterdam|rotterdam|eindhoven|\bnl\b|(^|\W
 const rePL = /(?:🇵🇱|poland|warsaw|warszawa|wroclaw|wrocław|krakow|kraków|poznan|poznań|gdansk|gdańsk|\bpl\b|(^|\W)pl(\W|$))/i;
 
 pushTo(['🇺🇸 USA (Auto)'], proxies.filter(p => reUS.test(p.tag)).map(p => p.tag));
-pushTo(['🇳🇱 NL (Auto)'], proxies.filter(p => reNL.test(p.tag)).map(p => p.tag));
-pushTo(['🇵🇱 PL (Auto)'], proxies.filter(p => rePL.test(p.tag)).map(p => p.tag));
+pushTo(['🇳🇱 Netherlands (Auto)'], proxies.filter(p => reNL.test(p.tag)).map(p => p.tag));
+pushTo(['🇵🇱 Poland (Auto)'], proxies.filter(p => rePL.test(p.tag)).map(p => p.tag));
 
 let compatAdded = false;
 config.outbounds.forEach(o => {
