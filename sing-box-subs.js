@@ -1,6 +1,6 @@
 const { type, name } = $arguments;
 
-let config = JSON.parse($files[0]);
+let cfg = JSON.parse($files[0]);
 const proxies = await produceArtifact({
   name,
   type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
@@ -8,21 +8,24 @@ const proxies = await produceArtifact({
   produceType: 'internal',
 });
 
-config.outbounds.push(...proxies);
+cfg.outbounds.push(...proxies);
 
-function setOutbounds(tag, tags) {
-  const o = config.outbounds.find(x => Array.isArray(x.outbounds) && x.tag === tag);
-  if (o) o.outbounds = tags.slice();
+const norm = s => (s && s.normalize ? s.normalize('NFKC').replace(/\uFE0F/g, '') : s);
+
+function setOutbounds(tag, list) {
+  const t = norm(tag);
+  const o = cfg.outbounds.find(x => Array.isArray(x.outbounds) && norm(x.tag) === t);
+  if (o) o.outbounds = list.slice();
 }
 
-const allTags = proxies.map(p => p.tag);
-const usTags = proxies.filter(p => /@US\b/.test(p.tag)).map(p => p.tag);
-const nlTags = proxies.filter(p => /@NL\b/.test(p.tag)).map(p => p.tag);
-const plTags = proxies.filter(p => /@PL\b/.test(p.tag)).map(p => p.tag);
+const all = proxies.map(p => p.tag);
+const us = proxies.filter(p => /@US\b/.test(p.tag)).map(p => p.tag);
+const nl = proxies.filter(p => /@NL\b/.test(p.tag)).map(p => p.tag);
+const pl = proxies.filter(p => /@PL\b/.test(p.tag)).map(p => p.tag);
 
-setOutbounds('🌍 Auto', allTags);
-setOutbounds('🇺🇸 USA (Auto)', usTags);
-setOutbounds('🇳🇱 Netherlands (Auto)', nlTags);
-setOutbounds('🇵🇱 Poland (Auto)', plTags);
+setOutbounds('🌍 Auto', all);
+setOutbounds('🇺🇸 USA (Auto)', us);
+setOutbounds('🇳🇱 Netherlands (Auto)', nl);
+setOutbounds('🇵🇱 Poland (Auto)', pl);
 
-$content = JSON.stringify(config, null, 2);
+$content = JSON.stringify(cfg, null, 2);
