@@ -1,8 +1,7 @@
 const { type, name } = $arguments;
 
 let config = JSON.parse($files[0]);
-
-const proxies = await produceArtifact({
+let proxies = await produceArtifact({
   name,
   type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
   platform: 'sing-box',
@@ -11,12 +10,16 @@ const proxies = await produceArtifact({
 
 config.outbounds.push(...proxies);
 
-function setOutbounds(tag, tags) {
-  const o = config.outbounds.find(x => Array.isArray(x.outbounds) && x.tag === tag);
-  if (o) o.outbounds = tags.slice();
+function pushToTargets(targetTags, tags) {
+  config.outbounds.forEach(o => {
+    if (Array.isArray(o.outbounds) && targetTags.includes(o.tag)) {
+      o.outbounds.push(...tags);
+    }
+  });
 }
 
 const allTags = proxies.map(p => p.tag);
+pushToTargets(['all', 'all-auto'], allTags);
 
 const reUS = /(?:🇺🇸|united\s*states|\busa\b|(^|\W)us(\W|$)|america|ashburn|new\s*york|los\s*angeles|dallas|miami|chicago|seattle|\blax\b|\biad\b|\bord\b|\bsea\b|\bdfw\b|\batl\b)/i;
 const reNL = /(?:🇳🇱|netherlands|amsterdam|rotterdam|eindhoven|\bnl\b|(^|\W)nl(\W|$)|\bams\b)/i;
@@ -26,9 +29,19 @@ const usTags = proxies.filter(p => reUS.test(p.tag)).map(p => p.tag);
 const nlTags = proxies.filter(p => reNL.test(p.tag)).map(p => p.tag);
 const plTags = proxies.filter(p => rePL.test(p.tag)).map(p => p.tag);
 
-setOutbounds('🌍 Auto', allTags);
-setOutbounds('🇺🇸 USA (Auto)', usTags);
-setOutbounds('🇳🇱 Netherlands (Auto)', nlTags);
-setOutbounds('🇵🇱 Poland (Auto)', plTags);
+pushToTargets(['🇺🇸 USA (Auto)'], usTags);
+pushToTargets(['🇳🇱 NL (Auto)'], nlTags);
+pushToTargets(['🇵🇱 PL (Auto)'], plTags);
+
+let compatAdded = false;
+config.outbounds.forEach(o => {
+  if (Array.isArray(o.outbounds) && o.outbounds.length === 0) {
+    if (!compatAdded) {
+      config.outbounds.push({ tag: 'COMPATIBLE', type: 'direct' });
+      compatAdded = true;
+    }
+    o.outbounds.push('COMPATIBLE');
+  }
+});
 
 $content = JSON.stringify(config, null, 2);
