@@ -1,7 +1,8 @@
 const { type, name } = $arguments;
 
 let config = JSON.parse($files[0]);
-let proxies = await produceArtifact({
+
+const proxies = await produceArtifact({
   name,
   type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
   platform: 'sing-box',
@@ -10,34 +11,24 @@ let proxies = await produceArtifact({
 
 config.outbounds.push(...proxies);
 
-function pushTo(targetTags, tags) {
-  config.outbounds.forEach(o => {
-    if (Array.isArray(o.outbounds) && targetTags.includes(o.tag)) {
-      o.outbounds.push(...tags);
-    }
-  });
+function setOutbounds(tag, tags) {
+  const o = config.outbounds.find(x => Array.isArray(x.outbounds) && x.tag === tag);
+  if (o) o.outbounds = tags.slice();
 }
 
-const all = proxies.map(p => p.tag);
-pushTo(['🌍 Auto'], all);
+const allTags = proxies.map(p => p.tag);
 
 const reUS = /(?:🇺🇸|united\s*states|\busa\b|(^|\W)us(\W|$)|america|ashburn|new\s*york|los\s*angeles|dallas|miami|chicago|seattle|\blax\b|\biad\b|\bord\b|\bsea\b|\bdfw\b|\batl\b)/i;
 const reNL = /(?:🇳🇱|netherlands|amsterdam|rotterdam|eindhoven|\bnl\b|(^|\W)nl(\W|$)|\bams\b)/i;
 const rePL = /(?:🇵🇱|poland|warsaw|warszawa|wroclaw|wrocław|krakow|kraków|poznan|poznań|gdansk|gdańsk|\bpl\b|(^|\W)pl(\W|$))/i;
 
-pushTo(['🇺🇸 USA (Auto)'], proxies.filter(p => reUS.test(p.tag)).map(p => p.tag));
-pushTo(['🇳🇱 Netherlands (Auto)'], proxies.filter(p => reNL.test(p.tag)).map(p => p.tag));
-pushTo(['🇵🇱 Poland (Auto)'], proxies.filter(p => rePL.test(p.tag)).map(p => p.tag));
+const usTags = proxies.filter(p => reUS.test(p.tag)).map(p => p.tag);
+const nlTags = proxies.filter(p => reNL.test(p.tag)).map(p => p.tag);
+const plTags = proxies.filter(p => rePL.test(p.tag)).map(p => p.tag);
 
-let compatAdded = false;
-config.outbounds.forEach(o => {
-  if (Array.isArray(o.outbounds) && o.outbounds.length === 0) {
-    if (!compatAdded) {
-      config.outbounds.push({ tag: 'COMPATIBLE', type: 'direct' });
-      compatAdded = true;
-    }
-    o.outbounds.push('COMPATIBLE');
-  }
-});
+setOutbounds('🌍 Auto', allTags);
+setOutbounds('🇺🇸 USA (Auto)', usTags);
+setOutbounds('🇳🇱 Netherlands (Auto)', nlTags);
+setOutbounds('🇵🇱 Poland (Auto)', plTags);
 
 $content = JSON.stringify(config, null, 2);
