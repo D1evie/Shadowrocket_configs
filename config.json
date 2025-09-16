@@ -104,7 +104,7 @@
   "route": {
     "final": "proxy",
     "rules": [
-      { "action": "sniff", "timeout": "100ms" },
+      { "action": "sniff", "timeout": "150ms" },
       { "action": "hijack-dns", "protocol": "dns" },
 
       { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
