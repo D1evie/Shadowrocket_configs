@@ -5,7 +5,6 @@
   },
   "dns": {
     "strategy": "ipv4_only",
-    "reverse_mapping": true,
     "servers": [
       { "tag": "dns-local", "address": "udp://62.76.76.62", "detour": "direct" },
       { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" },
@@ -104,7 +103,7 @@
   "route": {
     "final": "proxy",
     "rules": [
-      { "action": "sniff", "timeout": "150ms" },
+      { "action": "sniff" },
       { "action": "hijack-dns", "protocol": "dns" },
 
       { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
