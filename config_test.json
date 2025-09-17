@@ -5,6 +5,7 @@
   },
   "dns": {
     "strategy": "ipv4_only",
+    "reverse_mapping": true,
     "servers": [
       { "tag": "dns-local", "address": "tls://77.88.8.8", "detour": "direct" },
       { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" },
