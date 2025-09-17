@@ -34,32 +34,15 @@ const ensureBlock = (tag) => {
 };
 
 const ensureUrlTest = (tag, list) => {
-  const existed = getOutbound(tag);
-  const base = {
+  replaceOutbound(tag, {
     type: 'urltest',
     tag,
     outbounds: list.slice(),
     url: 'https://www.gstatic.com/generate_204',
     interval: '1m',
-    tolerance: 50
-  };
-  if (existed) {
-    const {
-      url, interval, tolerance, idle_timeout, interrupt_exist_connections
-    } = existed;
-    replaceOutbound(tag, {
-      type: 'urltest',
-      tag,
-      outbounds: list.slice(),
-      ...(url ? { url } : {}),
-      ...(interval ? { interval } : {}),
-      ...(typeof tolerance === 'number' ? { tolerance } : {}),
-      ...(idle_timeout ? { idle_timeout } : {}),
-      ...(typeof interrupt_exist_connections === 'boolean' ? { interrupt_exist_connections } : {})
-    });
-  } else {
-    replaceOutbound(tag, base);
-  }
+    tolerance: 50,
+    interrupt_exist_connections: true
+  });
 };
 
 const all = proxies.map(p => p.tag);
