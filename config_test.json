@@ -1,0 +1,197 @@
+{
+  "log": {
+    "level": "warning",
+    "timestamp": true
+  },
+  "dns": {
+    "strategy": "ipv4_only",
+    "servers": [
+      { "tag": "dns-local", "address": "udp://62.76.76.62", "detour": "direct" },
+      { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" },
+      { "tag": "dns-google", "address": "tls://8.8.8.8", "detour": "direct" }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "server": "dns-local",
+        "rule_set": "test-direct"
+      },
+      {
+        "action": "route",
+        "server": "dns-local",
+        "domain_suffix": [
+          "ru",
+          "su",
+          "tatar",
+          "moscow",
+          "yandex",
+          "ru.com",
+          "ru.net",
+          "xn--p1ai",
+          "xn--80adxhks",
+          "xn--d1acj3b",
+          "xn--80asehdb",
+          "xn--c1avg",
+          "xn--p1acf",
+          "xn--80aswg"
+        ]
+      },
+      {
+        "action": "route",
+        "server": "dns-local",
+        "domain_suffix": ["local", "home.arpa", "in-addr.arpa", "ip6.arpa"],
+        "domain": ["localhost", "captive.apple.com"]
+      }
+    ],
+    "final": "dns-cloudflare",
+    "cache_capacity": 4096
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "stack": "mixed",
+      "address": ["172.19.0.1/30"],
+      "mtu": 1400,
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": false,
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "type": "selector",
+      "default": "🌍 Auto",
+      "outbounds": [
+        "🌍 Auto",
+        "🇺🇸 USA (Auto)",
+        "🇳🇱 Netherlands (Auto)",
+        "🇵🇱 Poland (Auto)"
+      ],
+      "interrupt_exist_connections": true
+    },
+    { "tag": "direct", "type": "direct" },
+    {
+      "tag": "🌍 Auto",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "idle_timeout": "5m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "🇺🇸 USA (Auto)",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "idle_timeout": "5m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "🇳🇱 Netherlands (Auto)",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "idle_timeout": "5m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "🇵🇱 Poland (Auto)",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "idle_timeout": "5m",
+      "interrupt_exist_connections": true
+    }
+  ],
+  "route": {
+    "final": "proxy",
+    "rules": [
+      { "action": "sniff" },
+      { "action": "hijack-dns", "protocol": "dns" },
+
+      { "action": "route", "protocol": "bittorrent", "outbound": "direct" },
+
+      { "action": "route", "ip_is_private": true, "outbound": "direct" },
+      {
+        "action": "route",
+        "ip_cidr": [
+          "127.0.0.0/8",
+          "169.254.0.0/16",
+          "100.64.0.0/10",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.88.99.0/24",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "224.0.0.0/4",
+          "255.255.255.255/32",
+          "239.255.255.250/32",
+          "224.0.0.251/32"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "action": "route",
+        "domain_suffix": ["local", "home.arpa", "in-addr.arpa", "ip6.arpa"],
+        "domain": ["localhost", "captive.apple.com"],
+        "outbound": "direct"
+      },
+
+      { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
+      { "action": "route", "rule_set": "ru-ip", "outbound": "direct" },
+      {
+        "action": "route",
+        "domain_suffix": [
+          "ru",
+          "su",
+          "tatar",
+          "moscow",
+          "yandex",
+          "ru.com",
+          "ru.net",
+          "xn--p1ai",
+          "xn--80adxhks",
+          "xn--d1acj3b",
+          "xn--80asehdb",
+          "xn--c1avg",
+          "xn--p1acf",
+          "xn--80aswg"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "test-direct",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/D1evie/Shadowrocket_configs/raw/refs/heads/main/test.srs",
+        "download_detour": "direct",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "ru-ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/srs/ru.srs",
+        "download_detour": "direct",
+        "update_interval": "24h"
+      }
+    ],
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "cache_file": { "enabled": true, "store_rdrc": true }
+  }
+}
