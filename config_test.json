@@ -6,7 +6,7 @@
   "dns": {
     "strategy": "ipv4_only",
     "servers": [
-      { "tag": "dns-local", "address": "udp://62.76.76.62", "detour": "direct" },
+      { "tag": "dns-local", "address": "tls://77.88.8.8", "detour": "direct" },
       { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" },
       { "tag": "dns-google", "address": "tls://8.8.8.8", "detour": "direct" }
     ],
