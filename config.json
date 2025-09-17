@@ -105,9 +105,7 @@
     "rules": [
       { "action": "sniff" },
       { "action": "hijack-dns", "protocol": "dns" },
-
       { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
-
       { "action": "route", "rule_set": "ru-ip", "outbound": "direct" },
       {
         "action": "route",
