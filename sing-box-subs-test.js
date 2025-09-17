@@ -29,6 +29,13 @@ const replaceOutbound = (tag, obj) => {
   else cfg.outbounds.push(Object.assign({ tag }, obj));
 };
 
+const removeOutbound = (tag) => {
+  const i = findOutboundIndex(tag);
+  if (i >= 0) cfg.outbounds.splice(i, 1);
+};
+
+removeOutbound('block');
+
 const ensureBlock = (tag) => {
   replaceOutbound(tag, { type: 'block' });
 };
