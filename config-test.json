@@ -120,8 +120,6 @@
       { "action": "sniff" },
       { "action": "hijack-dns", "protocol": "dns" },
 
-      { "action": "route", "protocol": "bittorrent", "outbound": "direct" },
-
       { "action": "route", "ip_is_private": true, "outbound": "direct" },
       {
         "action": "route",
