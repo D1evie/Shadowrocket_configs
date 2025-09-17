@@ -23,10 +23,10 @@ const getOutbound = (tag) => {
   return i >= 0 ? cfg.outbounds[i] : null;
 };
 
-const replaceOutbound = (tag, obj) => {
-  const i = findOutboundIndex(tag);
-  if (i >= 0) cfg.outbounds[i] = Object.assign({ tag }, obj);
-  else cfg.outbounds.push(Object.assign({ tag }, obj));
+const upsertOutbound = (obj) => {
+  const i = findOutboundIndex(obj.tag);
+  if (i >= 0) cfg.outbounds[i] = obj;
+  else cfg.outbounds.push(obj);
 };
 
 const removeOutbound = (tag) => {
@@ -34,14 +34,8 @@ const removeOutbound = (tag) => {
   if (i >= 0) cfg.outbounds.splice(i, 1);
 };
 
-removeOutbound('block');
-
-const ensureBlock = (tag) => {
-  replaceOutbound(tag, { type: 'block' });
-};
-
 const ensureUrlTest = (tag, list) => {
-  replaceOutbound(tag, {
+  upsertOutbound({
     type: 'urltest',
     tag,
     outbounds: list.slice(),
@@ -65,10 +59,10 @@ const groups = [
 ];
 
 for (const g of groups) {
-  if (Array.isArray(g.list) && g.list.length > 0) {
+  if (g.list && g.list.length > 0) {
     ensureUrlTest(g.tag, g.list);
   } else {
-    ensureBlock(g.tag);
+    removeOutbound(g.tag);
   }
 }
 
@@ -78,7 +72,7 @@ if (selector) {
     .map(g => g.tag)
     .filter(tag => {
       const ob = getOutbound(tag);
-      return ob && ob.type !== 'block' && Array.isArray(ob.outbounds) && ob.outbounds.length > 0;
+      return ob && ob.type === 'urltest' && Array.isArray(ob.outbounds) && ob.outbounds.length > 0;
     });
 
   if (validTags.length > 0) {
