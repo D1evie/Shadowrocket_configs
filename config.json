@@ -5,10 +5,11 @@
   },
   "dns": {
     "strategy": "ipv4_only",
+    "reverse_mapping": false,
     "servers": [
-      { "tag": "dns-local", "address": "udp://62.76.76.62", "detour": "direct" },
-      { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" },
-      { "tag": "dns-google", "address": "tls://8.8.8.8", "detour": "direct" }
+      { "tag": "dns-local", "address": "tls://77.88.8.8", "detour": "direct" },
+      { "tag": "dns-google", "address": "tls://8.8.8.8", "detour": "direct" },
+      { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "direct" }
     ],
     "rules": [
       {
@@ -35,6 +36,12 @@
           "xn--p1acf",
           "xn--80aswg"
         ]
+      },
+      {
+        "action": "route",
+        "server": "dns-local",
+        "domain_suffix": ["local", "home.arpa", "in-addr.arpa", "ip6.arpa"],
+        "domain": ["localhost", "captive.apple.com"]
       }
     ],
     "final": "dns-cloudflare",
@@ -49,7 +56,7 @@
       "mtu": 1400,
       "auto_route": true,
       "strict_route": true,
-      "endpoint_independent_nat": false,
+      "endpoint_independent_nat": true,
       "sniff": true
     }
   ],
@@ -72,32 +79,40 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "interval": "5m",
+      "tolerance": 100,
+      "idle_timeout": "15m",
+      "interrupt_exist_connections": false
     },
     {
       "tag": "🇺🇸 USA (Auto)",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "interval": "5m",
+      "tolerance": 100,
+      "idle_timeout": "15m",
+      "interrupt_exist_connections": false
     },
     {
       "tag": "🇳🇱 Netherlands (Auto)",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "interval": "5m",
+      "tolerance": 100,
+      "idle_timeout": "15m",
+      "interrupt_exist_connections": false
     },
     {
       "tag": "🇵🇱 Poland (Auto)",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "interval": "5m",
+      "tolerance": 100,
+      "idle_timeout": "15m",
+      "interrupt_exist_connections": false
     }
   ],
   "route": {
@@ -105,6 +120,35 @@
     "rules": [
       { "action": "sniff" },
       { "action": "hijack-dns", "protocol": "dns" },
+
+      { "action": "route", "protocol": "bittorrent", "outbound": "direct" },
+
+      { "action": "route", "ip_is_private": true, "outbound": "direct" },
+      {
+        "action": "route",
+        "ip_cidr": [
+          "127.0.0.0/8",
+          "169.254.0.0/16",
+          "100.64.0.0/10",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.88.99.0/24",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "224.0.0.0/4",
+          "255.255.255.255/32",
+          "239.255.255.250/32",
+          "224.0.0.251/32"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "action": "route",
+        "domain_suffix": ["local", "home.arpa", "in-addr.arpa", "ip6.arpa"],
+        "domain": ["localhost", "captive.apple.com"],
+        "outbound": "direct"
+      },
+
       { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
       { "action": "route", "rule_set": "ru-ip", "outbound": "direct" },
       {
