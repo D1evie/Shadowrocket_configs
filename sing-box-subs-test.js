@@ -40,9 +40,9 @@ const ensureUrlTest = (tag, list) => {
     tag,
     outbounds: list.slice(),
     url: 'https://www.gstatic.com/generate_204',
-    interval: '1m',
-    tolerance: 50,
-    interrupt_exist_connections: true
+    interval: '5m',
+    tolerance: 100,
+    interrupt_exist_connections: false
   });
 };
 
