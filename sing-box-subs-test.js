@@ -46,16 +46,16 @@ const ensureUrlTest = (tag, list) => {
   });
 };
 
-const all = proxies.map(p => p.tag);
 const us  = proxies.filter(p => /@US\b/.test(p.tag)).map(p => p.tag);
 const nl  = proxies.filter(p => /@NL\b/.test(p.tag)).map(p => p.tag);
 const pl  = proxies.filter(p => /@PL\b/.test(p.tag)).map(p => p.tag);
+const de  = proxies.filter(p => /@DE\b/.test(p.tag)).map(p => p.tag);
 
 const groups = [
-  { tag: '🌍 Auto', list: all },
   { tag: '🇺🇸 USA (Auto)', list: us },
   { tag: '🇳🇱 Netherlands (Auto)', list: nl },
   { tag: '🇵🇱 Poland (Auto)', list: pl },
+  { tag: '🇩🇪 Germany (Auto)', list: de },
 ];
 
 for (const g of groups) {
