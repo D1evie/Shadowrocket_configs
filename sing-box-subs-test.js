@@ -52,10 +52,10 @@ const pl  = proxies.filter(p => /@PL\b/.test(p.tag)).map(p => p.tag);
 const de  = proxies.filter(p => /@DE\b/.test(p.tag)).map(p => p.tag);
 
 const groups = [
-  { tag: '🇺🇸 USA (Auto)', list: us },
-  { tag: '🇳🇱 Netherlands (Auto)', list: nl },
-  { tag: '🇵🇱 Poland (Auto)', list: pl },
-  { tag: '🇩🇪 Germany (Auto)', list: de },
+  { tag: '🇺🇸 USA', list: us },
+  { tag: '🇳🇱 Netherlands', list: nl },
+  { tag: '🇵🇱 Poland', list: pl },
+  { tag: '🇩🇪 Germany', list: de },
 ];
 
 for (const g of groups) {
