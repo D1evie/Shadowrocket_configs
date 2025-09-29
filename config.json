@@ -64,18 +64,18 @@
     {
       "tag": "proxy",
       "type": "selector",
-      "default": "🇺🇸 USA (Auto)",
+      "default": "🇺🇸 USA",
       "outbounds": [
-        "🇺🇸 USA (Auto)",
-        "🇳🇱 Netherlands (Auto)",
-        "🇵🇱 Poland (Auto)",
-        "🇩🇪 Germany (Auto)"
+        "🇺🇸 USA",
+        "🇳🇱 Netherlands",
+        "🇵🇱 Poland",
+        "🇩🇪 Germany"
       ],
       "interrupt_exist_connections": true
     },
     { "tag": "direct", "type": "direct" },
     {
-      "tag": "🇺🇸 USA (Auto)",
+      "tag": "🇺🇸 USA",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -85,7 +85,7 @@
       "interrupt_exist_connections": false
     },
     {
-      "tag": "🇳🇱 Netherlands (Auto)",
+      "tag": "🇳🇱 Netherlands",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -95,7 +95,7 @@
       "interrupt_exist_connections": false
     },
     {
-      "tag": "🇵🇱 Poland (Auto)",
+      "tag": "🇵🇱 Poland",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -105,7 +105,7 @@
       "interrupt_exist_connections": false
     },
     {
-      "tag": "🇩🇪 Germany (Auto)",
+      "tag": "🇩🇪 Germany",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
