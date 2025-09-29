@@ -8,8 +8,8 @@
     "reverse_mapping": false,
     "servers": [
       { "tag": "dns-local", "address": "tls://77.88.8.8", "detour": "direct" },
-      { "tag": "dns-google", "address": "https://dns.google/dns-query", "detour": "proxy" },
-      { "tag": "dns-cloudflare", "address": "https://cloudflare-dns.com/dns-query", "detour": "proxy" }
+      { "tag": "dns-google", "address": "tls://8.8.8.8", "detour": "proxy" },
+      { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "proxy" }
     ],
     "rules": [
       {
