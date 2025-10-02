@@ -69,7 +69,8 @@
         "🇺🇸 USA",
         "🇳🇱 Netherlands",
         "🇵🇱 Poland",
-        "🇩🇪 Germany"
+        "🇩🇪 Germany",
+        "🕊️ White List"
       ],
       "interrupt_exist_connections": true
     },
@@ -106,6 +107,16 @@
     },
     {
       "tag": "🇩🇪 Germany",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 100,
+      "idle_timeout": "15m",
+      "interrupt_exist_connections": false
+    },
+    {
+      "tag": "🕊️ White List",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
