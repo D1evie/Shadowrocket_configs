@@ -50,12 +50,14 @@ const us  = proxies.filter(p => /@US\b/.test(p.tag)).map(p => p.tag);
 const nl  = proxies.filter(p => /@NL\b/.test(p.tag)).map(p => p.tag);
 const pl  = proxies.filter(p => /@PL\b/.test(p.tag)).map(p => p.tag);
 const de  = proxies.filter(p => /@DE\b/.test(p.tag)).map(p => p.tag);
+const wl  = proxies.filter(p => /@WL\b/.test(p.tag)).map(p => p.tag);
 
 const groups = [
   { tag: '🇺🇸 USA', list: us },
   { tag: '🇳🇱 Netherlands', list: nl },
   { tag: '🇵🇱 Poland', list: pl },
   { tag: '🇩🇪 Germany', list: de },
+  { tag: '🕊️ White List', list: wl },
 ];
 
 for (const g of groups) {
