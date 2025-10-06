@@ -34,14 +34,11 @@ const removeOutbound = (tag) => {
   if (i >= 0) cfg.outbounds.splice(i, 1);
 };
 
-const ensureUrlTest = (tag, list) => {
+const ensureSelectorGroup = (tag, list) => {
   upsertOutbound({
-    type: 'urltest',
+    type: 'selector',
     tag,
     outbounds: list.slice(),
-    url: 'https://www.gstatic.com/generate_204',
-    interval: '5m',
-    tolerance: 100,
     interrupt_exist_connections: false
   });
 };
@@ -62,7 +59,7 @@ const groups = [
 
 for (const g of groups) {
   if (g.list && g.list.length > 0) {
-    ensureUrlTest(g.tag, g.list);
+    ensureSelectorGroup(g.tag, g.list);
   } else {
     removeOutbound(g.tag);
   }
@@ -74,7 +71,7 @@ if (selector) {
     .map(g => g.tag)
     .filter(tag => {
       const ob = getOutbound(tag);
-      return ob && ob.type === 'urltest' && Array.isArray(ob.outbounds) && ob.outbounds.length > 0;
+      return ob && ob.type === 'selector' && Array.isArray(ob.outbounds) && ob.outbounds.length > 0;
     });
 
   if (validTags.length > 0) {
