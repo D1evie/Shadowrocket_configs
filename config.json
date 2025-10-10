@@ -56,8 +56,7 @@
       "mtu": 1400,
       "auto_route": true,
       "strict_route": true,
-      "endpoint_independent_nat": true,
-      "sniff": true
+      "endpoint_independent_nat": false
     }
   ],
   "outbounds": [
@@ -77,52 +76,32 @@
     { "tag": "direct", "type": "direct" },
     {
       "tag": "🇺🇸 USA",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 100,
-      "idle_timeout": "15m",
       "interrupt_exist_connections": false
     },
     {
       "tag": "🇳🇱 Netherlands",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 100,
-      "idle_timeout": "15m",
       "interrupt_exist_connections": false
     },
     {
       "tag": "🇵🇱 Poland",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 100,
-      "idle_timeout": "15m",
       "interrupt_exist_connections": false
     },
     {
       "tag": "🇩🇪 Germany",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 100,
-      "idle_timeout": "15m",
       "interrupt_exist_connections": false
     },
     {
       "tag": "🕊️ White List",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 100,
-      "idle_timeout": "15m",
       "interrupt_exist_connections": false
     }
   ],
@@ -131,9 +110,7 @@
     "rules": [
       { "action": "sniff" },
       { "action": "hijack-dns", "protocol": "dns" },
-
       { "action": "route", "protocol": "bittorrent", "outbound": "direct" },
-
       { "action": "route", "ip_is_private": true, "outbound": "direct" },
       {
         "action": "route",
@@ -160,7 +137,6 @@
         "domain": ["localhost", "captive.apple.com"],
         "outbound": "direct"
       },
-
       { "action": "route", "rule_set": "test-direct", "outbound": "direct" },
       { "action": "route", "rule_set": "ru-ip", "outbound": "direct" },
       {
