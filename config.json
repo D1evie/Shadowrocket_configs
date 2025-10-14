@@ -12,6 +12,7 @@
       { "tag": "dns-cloudflare", "address": "tls://1.1.1.1", "detour": "proxy" }
     ],
     "rules": [
+      { "action": "reject", "rule_set": "adblock" },
       {
         "action": "route",
         "server": "dns-local",
@@ -174,6 +175,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/srs/ru.srs",
+        "download_detour": "direct",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "adblock",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/D1evie/Shadowrocket_configs/raw/refs/heads/main/AdBlock.srs",
         "download_detour": "direct",
         "update_interval": "24h"
       }
